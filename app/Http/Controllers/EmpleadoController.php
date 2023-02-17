@@ -37,7 +37,9 @@ class EmpleadoController extends Controller
         //
         $datosEmpleado = request()->except('_token');
         Empleado::insert($datosEmpleado);
-        return response()->json($datosEmpleado);
+        // return response()->json($datosEmpleado);
+
+        return redirect('empleado')->with('mensaje','empleado agregado');
     }
 
     /**
@@ -56,6 +58,7 @@ class EmpleadoController extends Controller
         //
         $empleado=Empleado::findOrFail($id);
         return view('empleado.edit', compact('empleado'));
+        
     }
 
     /**
@@ -69,6 +72,7 @@ class EmpleadoController extends Controller
 
         $empleado=Empleado::findOrFail($id);
         return view('empleado.edit', compact('empleado'));
+        
     }   
 
     /**
@@ -79,5 +83,7 @@ class EmpleadoController extends Controller
         //
         Empleado::destroy($id);
         return redirect('empleado');
+
+        return redirect('empleado')->with('mensaje','Registro eliminado');
     }
 }
